@@ -36,7 +36,7 @@ document.querySelector('#app').innerHTML = `
     <section class="hero shell" aria-labelledby="hero-title">
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-content">
-        <div class="eyebrow"><span class="status-dot"></span> THE DEVELOPER CLI FOR KUBERNETES <span class="eyebrow-line"></span> 01 / 03</div>
+        <div class="eyebrow"><span class="status-dot"></span> THE DEVELOPER CLI FOR KUBERNETES <span class="eyebrow-line"></span> 01 / 04</div>
         <div class="hero-copy markdown">${render('hero')}</div>
         <div class="hero-actions"><a class="button-primary" href="#about">Meet Nkube <i data-lucide="arrow-right"></i></a><a class="button-secondary" href="#roadmap">See the roadmap <i data-lucide="arrow-up-right"></i></a></div>
         <div class="hero-footnote"><span>OPEN SOURCE</span><span class="footnote-cross">+</span><span>NATIVE AOT</span><span class="footnote-cross">+</span><span>MADE FOR .NET</span></div>
@@ -54,12 +54,20 @@ document.querySelector('#app').innerHTML = `
       </div>
     </section>
 
+    <section class="compatibility shell" id="compatibility">
+      <div class="section-heading"><span>02 / KUBECTL COMPATIBILITY</span><span class="heading-rule"></span><span>SEE IT IN ACTION</span></div>
+      <div class="compatibility-inner">
+        <div class="compatibility-copy"><div class="markdown">${render('kubectl')}</div><a class="text-link" href="https://asciinema.org/a/rmG3TTjbkjvRjG3h" target="_blank" rel="noopener noreferrer">Open recording on asciinema <i data-lucide="arrow-up-right"></i></a></div>
+        <div class="recording"><div class="recording-header"><span>NKUBE / LIVE RECORDING</span><span>ASCIINEMA</span></div><div id="asciinema-player"><a class="recording-preview" href="https://asciinema.org/a/rmG3TTjbkjvRjG3h" target="_blank" rel="noopener noreferrer"><img src="https://asciinema.org/a/rmG3TTjbkjvRjG3h.svg" alt="Watch the Nkube terminal recording on asciinema"></a></div></div>
+      </div>
+    </section>
+
     <section class="workflow" id="workflow"><div class="shell workflow-inner">
-      <div class="workflow-copy"><div class="section-heading"><span>02 / THE WORKFLOW</span><span class="heading-rule"></span></div><div class="markdown">${render('workflow')}</div><a class="text-link" href="#roadmap">See what's coming <i data-lucide="arrow-right"></i></a></div>
+      <div class="workflow-copy"><div class="section-heading"><span>03 / THE WORKFLOW</span><span class="heading-rule"></span></div><div class="markdown">${render('workflow')}</div><a class="text-link" href="#roadmap">See what's coming <i data-lucide="arrow-right"></i></a></div>
       <div class="terminal" aria-label="Example of the planned Nkube workflow"><div class="terminal-header"><div class="terminal-dots"><span></span><span></span><span></span></div><span>YOUR PROJECT / TERMINAL</span><span>EXAMPLE</span></div><div class="terminal-body"><div class="terminal-comment"># A simpler path to Kubernetes</div>${exampleLines}<div class="terminal-caption">// A glimpse of the workflow we're building.</div></div><button class="copy-button" type="button" title="Copy example commands" aria-label="Copy example commands"><i data-lucide="copy"></i></button></div>
     </div></section>
 
-    <section class="roadmap shell" id="roadmap"><div class="section-heading"><span>03 / WHAT'S NEXT</span><span class="heading-rule"></span><span>THE ROAD TO PREVIEW</span></div><div class="roadmap-intro markdown">${render('roadmap-intro')}</div><div class="roadmap-grid">
+    <section class="roadmap shell" id="roadmap"><div class="section-heading"><span>04 / WHAT'S NEXT</span><span class="heading-rule"></span><span>THE ROAD TO PREVIEW</span></div><div class="roadmap-intro markdown">${render('roadmap-intro')}</div><div class="roadmap-grid">
       <article class="roadmap-item"><span class="roadmap-number">01</span><span class="roadmap-time">DAYS 01—30</span><div class="markdown">${render('foundation')}</div></article>
       <article class="roadmap-item"><span class="roadmap-number">02</span><span class="roadmap-time">DAYS 31—60</span><div class="markdown">${render('project-to-cluster')}</div></article>
       <article class="roadmap-item"><span class="roadmap-number">03</span><span class="roadmap-time">DAYS 61—90</span><div class="markdown">${render('debug-slice')}</div></article>
@@ -72,6 +80,24 @@ document.querySelector('#app').innerHTML = `
 
 document.querySelector('.hero-copy h1').id = 'hero-title';
 createIcons({ icons: { ArrowRight, ArrowUpRight, Check, Copy, Hexagon } });
+
+const recordingPlayer = document.querySelector('#asciinema-player');
+const recordingPreview = recordingPlayer.querySelector('.recording-preview');
+const recordingObserver = new MutationObserver(() => {
+  const frame = recordingPlayer.querySelector('iframe');
+  if (frame && frame.style.visibility === 'visible') {
+    recordingPreview.hidden = true;
+    recordingObserver.disconnect();
+  }
+});
+recordingObserver.observe(recordingPlayer, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+const recordingScript = document.createElement('script');
+recordingScript.src = 'https://asciinema.org/a/rmG3TTjbkjvRjG3h.js';
+recordingScript.id = 'asciicast-rmG3TTjbkjvRjG3h';
+recordingScript.async = true;
+recordingScript.dataset.autoplay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? '0' : '1';
+recordingScript.dataset.loop = '1';
+recordingPlayer.append(recordingScript);
 
 const copyButton = document.querySelector('.copy-button');
 copyButton.addEventListener('click', async () => {

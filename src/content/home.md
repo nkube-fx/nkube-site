@@ -36,6 +36,14 @@ Bring debugging closer to your cluster with a path to attaching your familiar .N
 
 `Connect` `Diagnose` `Debug`
 
+## kubectl
+
+### Familiar commands. Native execution.
+
+Nkube's command-line interface is generated from the upstream kubectl Go code, keeping the command structure and options aligned with kubectl.
+
+Core Kubernetes commands are supported natively through a generic workflow. The generated interface covers the wider command tree, while commands not yet implemented remain recognizable and report their support status clearly.
+
 ## workflow
 
 ### Less between you and your code.
