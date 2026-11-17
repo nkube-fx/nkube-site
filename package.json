@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "parcel src/index.html --host 0.0.0.0",
-    "build": "parcel build src/index.html --public-url ./"
+    "build": "parcel build src/index.html --public-url ./ && node -e \"require('node:fs').copyFileSync('assets/social-preview.jpg', 'dist/social-preview.jpg')\""
   },
   "dependencies": {
     "@picocss/pico": "^2.1.1",
