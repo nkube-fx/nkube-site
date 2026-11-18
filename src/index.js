@@ -1,7 +1,10 @@
 import '@picocss/pico/css/pico.min.css';
+import * as AsciinemaPlayer from 'asciinema-player';
+import 'asciinema-player/dist/bundle/asciinema-player.css';
 import { marked } from 'marked';
 import { createIcons, ArrowRight, ArrowUpRight, Check, Copy, Hexagon } from 'lucide';
 import content from 'bundle-text:./content/home.md';
+import demoCastUrl from 'url:../assets/demo.cast';
 
 const sections = {};
 let currentSection;
@@ -58,7 +61,7 @@ document.querySelector('#app').innerHTML = `
       <div class="section-heading"><span>02 / KUBECTL COMPATIBILITY</span><span class="heading-rule"></span><span>SEE IT IN ACTION</span></div>
       <div class="compatibility-inner">
         <div class="compatibility-copy"><div class="markdown">${render('kubectl')}</div><a class="text-link" href="https://asciinema.org/a/aux78sH6tkcx1Cfa" target="_blank" rel="noopener noreferrer">Open recording on asciinema <i data-lucide="arrow-up-right"></i></a></div>
-        <div class="recording"><div class="recording-header"><span>NKUBE / LIVE RECORDING</span><span>ASCIINEMA</span></div><div id="asciinema-player"><a class="recording-preview" href="https://asciinema.org/a/aux78sH6tkcx1Cfa" target="_blank" rel="noopener noreferrer"><img src="https://asciinema.org/a/aux78sH6tkcx1Cfa.svg" alt="Watch the Nkube terminal recording on asciinema"></a></div></div>
+        <div class="recording"><div class="recording-header"><span>NKUBE / LIVE RECORDING</span><span>ASCIINEMA</span></div><div id="asciinema-player"></div></div>
       </div>
     </section>
 
@@ -82,22 +85,17 @@ document.querySelector('.hero-copy h1').id = 'hero-title';
 createIcons({ icons: { ArrowRight, ArrowUpRight, Check, Copy, Hexagon } });
 
 const recordingPlayer = document.querySelector('#asciinema-player');
-const recordingPreview = recordingPlayer.querySelector('.recording-preview');
-const recordingObserver = new MutationObserver(() => {
-  const frame = recordingPlayer.querySelector('iframe');
-  if (frame && frame.style.visibility === 'visible') {
-    recordingPreview.hidden = true;
-    recordingObserver.disconnect();
-  }
+const demoPlayer = AsciinemaPlayer.create(demoCastUrl, recordingPlayer, {
+  autoplay: !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  loop: false,
+  startAt: 15,
+  fit: 'width',
+  terminalFontFamily: "'JetBrains Mono', monospace",
 });
-recordingObserver.observe(recordingPlayer, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
-const recordingScript = document.createElement('script');
-recordingScript.src = 'https://asciinema.org/a/aux78sH6tkcx1Cfa.js';
-recordingScript.id = 'asciicast-aux78sH6tkcx1Cfa';
-recordingScript.async = true;
-recordingScript.dataset.autoplay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? '0' : '1';
-recordingScript.dataset.loop = '1';
-recordingPlayer.append(recordingScript);
+demoPlayer.addEventListener('ended', async () => {
+  await demoPlayer.seek(15);
+  await demoPlayer.play();
+});
 
 const copyButton = document.querySelector('.copy-button');
 copyButton.addEventListener('click', async () => {
