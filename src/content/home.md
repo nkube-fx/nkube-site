@@ -6,6 +6,10 @@ Kubernetes for .NET developers.
 
 One native CLI to bring your .NET projects closer to Kubernetes. Build, deploy, test, and debug without losing your flow.
 
+## delivery
+
+One tool, three ways to run it. **Native binaries** keep local workflows fast and dependency-free. The **.NET tool** makes Nkube part of your project's versioned toolchain. The **OCI image** brings the same experience to CI pipelines and Kubernetes environments.
+
 ## introduction
 
 ### From your project to your cluster.

@@ -43,6 +43,7 @@ document.querySelector('#app').innerHTML = `
         <div class="hero-copy markdown">${render('hero')}</div>
         <div class="hero-actions"><a class="button-primary" href="#about">Meet Nkube <i data-lucide="arrow-right"></i></a><a class="button-secondary" href="#roadmap">See the roadmap <i data-lucide="arrow-up-right"></i></a></div>
         <div class="hero-footnote"><span>OPEN SOURCE</span><span class="footnote-cross">+</span><span>NATIVE AOT</span><span class="footnote-cross">+</span><span>MADE FOR .NET</span></div>
+        <div class="hero-delivery markdown">${render('delivery')}</div>
       </div>
       <div class="hero-index" aria-hidden="true">N / K<br>001—026</div>
     </section>
