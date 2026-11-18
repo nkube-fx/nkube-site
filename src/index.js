@@ -57,8 +57,8 @@ document.querySelector('#app').innerHTML = `
     <section class="compatibility shell" id="compatibility">
       <div class="section-heading"><span>02 / KUBECTL COMPATIBILITY</span><span class="heading-rule"></span><span>SEE IT IN ACTION</span></div>
       <div class="compatibility-inner">
-        <div class="compatibility-copy"><div class="markdown">${render('kubectl')}</div><a class="text-link" href="https://asciinema.org/a/rmG3TTjbkjvRjG3h" target="_blank" rel="noopener noreferrer">Open recording on asciinema <i data-lucide="arrow-up-right"></i></a></div>
-        <div class="recording"><div class="recording-header"><span>NKUBE / LIVE RECORDING</span><span>ASCIINEMA</span></div><div id="asciinema-player"><a class="recording-preview" href="https://asciinema.org/a/rmG3TTjbkjvRjG3h" target="_blank" rel="noopener noreferrer"><img src="https://asciinema.org/a/rmG3TTjbkjvRjG3h.svg" alt="Watch the Nkube terminal recording on asciinema"></a></div></div>
+        <div class="compatibility-copy"><div class="markdown">${render('kubectl')}</div><a class="text-link" href="https://asciinema.org/a/aux78sH6tkcx1Cfa" target="_blank" rel="noopener noreferrer">Open recording on asciinema <i data-lucide="arrow-up-right"></i></a></div>
+        <div class="recording"><div class="recording-header"><span>NKUBE / LIVE RECORDING</span><span>ASCIINEMA</span></div><div id="asciinema-player"><a class="recording-preview" href="https://asciinema.org/a/aux78sH6tkcx1Cfa" target="_blank" rel="noopener noreferrer"><img src="https://asciinema.org/a/aux78sH6tkcx1Cfa.svg" alt="Watch the Nkube terminal recording on asciinema"></a></div></div>
       </div>
     </section>
 
@@ -92,8 +92,8 @@ const recordingObserver = new MutationObserver(() => {
 });
 recordingObserver.observe(recordingPlayer, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
 const recordingScript = document.createElement('script');
-recordingScript.src = 'https://asciinema.org/a/rmG3TTjbkjvRjG3h.js';
-recordingScript.id = 'asciicast-rmG3TTjbkjvRjG3h';
+recordingScript.src = 'https://asciinema.org/a/aux78sH6tkcx1Cfa.js';
+recordingScript.id = 'asciicast-aux78sH6tkcx1Cfa';
 recordingScript.async = true;
 recordingScript.dataset.autoplay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? '0' : '1';
 recordingScript.dataset.loop = '1';
