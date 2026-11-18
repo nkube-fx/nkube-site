@@ -29,8 +29,8 @@ document.querySelector('#app').innerHTML = `
     <a class="brand" href="#top" aria-label="Nkube home"><span class="brand-mark"><i data-lucide="hexagon"></i><span>n</span></span> nkube<span class="brand-period">.</span></a>
     <nav aria-label="Main navigation">
       <a href="#about">The idea</a>
+      <a href="#compatibility">kubectl compatibility</a>
       <a href="#workflow">Workflow</a>
-      <a href="#roadmap">Roadmap</a>
     </nav>
     <a class="header-link" href="#roadmap">Explore the roadmap <i data-lucide="arrow-up-right"></i></a>
   </header>
